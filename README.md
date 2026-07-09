@@ -12,22 +12,12 @@ A Retrieval-Augmented Generation (RAG) chatbot that answers natural-language que
 - Exposes the pipeline via a FastAPI backend and a Streamlit chat frontend
 
 ## Architecture
-YouTube video page
-│
-▼
-Extract video ID → Fetch transcript (youtube-transcript-api)
-│
-▼
-Chunk transcript (RecursiveCharacterTextSplitter, 1000 chars / 200 overlap)
-│
-▼
-Embed chunks (OpenAI text-embedding-3-small) → Store in Chroma
-│        (collection scoped per video_id — isolated namespace)
-▼
+YouTube video page ->
+Extract video ID → Fetch transcript (youtube-transcript-api) -> Chunk transcript (RecursiveCharacterTextSplitter, 1000 chars / 200 overlap) -> Embed chunks (OpenAI text-embedding-3-small) → Store in Chroma
+       (collection scoped per video_id — isolated namespace)
+
 On a question:
-MMR retriever (k=4) → video_context
-│
-▼
+MMR retriever (k=4) → video_context ->
 Sufficiency check (structured LLM call, Pydantic schema: sufficient: bool, reason: str)
 │
 ├── sufficient  → skip Wikipedia
