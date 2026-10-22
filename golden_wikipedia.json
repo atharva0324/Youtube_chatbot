@@ -1,0 +1,107 @@
+[
+  {
+    "id": "w01",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is a hadron?",
+    "expected_answer": "A hadron is a composite subatomic particle made of two or more quarks held together by the strong interaction. Protons and neutrons are the most familiar examples. The Large Hadron Collider is named after them.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w02",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What are eigenvectors and eigenvalues?",
+    "expected_answer": "For a linear transformation, an eigenvector is a nonzero vector whose direction does not change (it is only scaled) when the transformation is applied, and the eigenvalue is the factor by which it is scaled. They are used in PCA, where the principal components are the eigenvectors of the data's covariance matrix.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w03",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is a random forest?",
+    "expected_answer": "A random forest is an ensemble learning method that trains many decision trees on random samples of the data and random subsets of features, then combines their outputs: majority vote for classification and averaging for regression. It reduces the overfitting that a single decision tree tends to have.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w04",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is a decision tree in machine learning?",
+    "expected_answer": "A decision tree is a model that splits the data step by step using tests on feature values, forming branches that end in leaves holding the prediction. Classification trees predict a class and regression trees predict a number. They are easy to interpret but can overfit.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w05",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is overfitting?",
+    "expected_answer": "Overfitting is when a model fits the training data too closely, including its noise, so it performs well on training data but poorly on new, unseen data. It can be reduced with more data, regularization, dropout, early stopping or cross-validation.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w06",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is CERN?",
+    "expected_answer": "CERN is the European Organization for Nuclear Research, a particle physics laboratory founded in 1954 near Geneva on the border of Switzerland and France. It operates the Large Hadron Collider, and the World Wide Web was invented there.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w07",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is backpropagation?",
+    "expected_answer": "Backpropagation is the algorithm used to compute the gradient of the loss with respect to every weight in a neural network, using the chain rule and working backward from the output layer to the input layer. These gradients are then used by gradient descent to update the weights.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w08",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is gradient boosting?",
+    "expected_answer": "Gradient boosting is an ensemble technique that builds models one after another, typically small decision trees, where each new model is fit to the errors (the negative gradient of the loss) of the ensemble so far. XGBoost and LightGBM are popular implementations.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w09",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is a convolutional neural network?",
+    "expected_answer": "A convolutional neural network is a neural network that uses convolutional layers with learnable filters that slide over the input, such as an image, to detect local patterns like edges and shapes. It often includes pooling layers and is widely used for image recognition.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w10",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is a gamma ray?",
+    "expected_answer": "A gamma ray is a very high-energy form of electromagnetic radiation, made of photons with extremely short wavelengths. Gamma rays are produced by radioactive decay, nuclear reactions and energetic astrophysical events.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w11",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is cross-validation?",
+    "expected_answer": "Cross-validation is a resampling technique for estimating how well a model generalizes. The data is split into several folds, the model is trained on some folds and validated on the held-out fold, and this is repeated so each fold is used for validation once. K-fold cross-validation is the most common form.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w12",
+    "video_id": "i_LwzRVP7bg",
+    "question": "Who proposed the k-means algorithm and who coined the name?",
+    "expected_answer": "Stuart Lloyd proposed the standard k-means algorithm in 1957 while at Bell Labs, although it was published only in 1982. The term k-means was first used by James MacQueen in 1967.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w13",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is regularization in machine learning?",
+    "expected_answer": "Regularization adds a penalty term to the loss function to discourage overly complex models and reduce overfitting. L1 regularization (lasso) penalizes the sum of absolute weights and can drive some weights to zero, while L2 regularization (ridge) penalizes the squared weights and shrinks them.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w14",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is hyperparameter optimization?",
+    "expected_answer": "Hyperparameter optimization is the process of choosing the best hyperparameters for a learning algorithm, the settings that are not learned from the data. Common methods are grid search (trying all combinations), random search and Bayesian optimization, with candidates compared on validation data.",
+    "category": "wikipedia"
+  },
+  {
+    "id": "w15",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is Keras?",
+    "expected_answer": "Keras is an open-source, high-level neural network library written in Python that is designed for fast experimentation. It was created by Francois Chollet and is used with TensorFlow, which is how the video builds its models.",
+    "category": "wikipedia"
+  }
+]

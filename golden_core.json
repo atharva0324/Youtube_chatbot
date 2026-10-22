@@ -1,0 +1,170 @@
+[
+  {
+    "id": "c01",
+    "video_id": "i_LwzRVP7bg",
+    "question": "Which dataset is used in the Colab code to train and compare KNN, naive Bayes, logistic regression and SVM, and what is the model trying to predict?",
+    "expected_answer": "The MAGIC gamma telescope dataset from the UCI Machine Learning Repository. The model uses properties of the patterns recorded by the telescope's camera (length, width, size, asymmetry, etc.) to predict whether a particle was a gamma particle or a hadron.",
+    "category": "factual"
+  },
+  {
+    "id": "c02",
+    "video_id": "i_LwzRVP7bg",
+    "question": "How does the video define machine learning, and how does it differ from AI and data science?",
+    "expected_answer": "Machine learning is a sub-domain of computer science focused on algorithms that help a computer learn from data without a programmer explicitly telling it what to do. AI is the broader area aimed at enabling machines to perform human-like tasks. Machine learning is a subset of AI that solves a specific problem and makes predictions using data. Data science is a field that finds patterns and draws insights from data, and may use machine learning.",
+    "category": "conceptual"
+  },
+  {
+    "id": "c04",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is the difference between nominal and ordinal data, and how is each fed into a model?",
+    "expected_answer": "Nominal data are categories with no inherent order (such as nationality or gender) and are encoded with one-hot encoding, where the matching category is 1 and all others are 0. Ordinal data have an inherent order (such as age groups or ratings from bad to great) and can simply be mapped to numbers like 1 to 5.",
+    "category": "conceptual"
+  },
+  {
+    "id": "c05",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is the difference between classification and regression in supervised learning?",
+    "expected_answer": "Classification predicts discrete classes, either binary (two categories such as spam or not spam) or multi-class (more than two, such as cat, dog, lizard). Regression predicts continuous numerical values, such as the price of a house or tomorrow's temperature.",
+    "category": "conceptual"
+  },
+  {
+    "id": "c06",
+    "video_id": "i_LwzRVP7bg",
+    "question": "Why is the dataset split into training, validation and test sets, and what is each one used for?",
+    "expected_answer": "The training set is fed to the model, the loss is computed, and the model is adjusted (this is training). The validation set is a reality check during or after training to see whether the model handles unseen data, but its loss is not fed back into the model. The test set is a final check of how well the chosen model generalizes to data it has never seen. Typical splits are 60/20/20 or 80/10/10.",
+    "category": "conceptual"
+  },
+  {
+    "id": "c07",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What are L1 loss and L2 loss, and how do they differ?",
+    "expected_answer": "L1 loss is the sum of the absolute differences between the real and predicted values. L2 loss squares the differences instead, so it is quadratic: small errors are penalized very little while large errors are penalized much more. For both, loss decreases as model performance gets better.",
+    "category": "conceptual"
+  },
+  {
+    "id": "c08",
+    "video_id": "i_LwzRVP7bg",
+    "question": "Why does the video scale the data, and which tool is used?",
+    "expected_answer": "The columns have very different scales (some values in the hundreds, others like 0.03), which can affect results. The video uses scikit-learn's StandardScaler to scale each column relative to its mean and standard deviation.",
+    "category": "factual"
+  },
+  {
+    "id": "c09",
+    "video_id": "i_LwzRVP7bg",
+    "question": "Why does the video oversample the training data, and why is it not done on the validation and test sets?",
+    "expected_answer": "The training data is imbalanced, with around 7000 gammas but only around 4000 hadrons. A RandomOverSampler keeps sampling from the smaller class until both classes have the same size. It is not applied to validation and test sets because those should represent real, unseen data, so the goal is to see whether the model can be trusted on it rather than to balance it.",
+    "category": "multi-chunk"
+  },
+  {
+    "id": "c10",
+    "video_id": "i_LwzRVP7bg",
+    "question": "How does the K-nearest neighbors algorithm classify a new point?",
+    "expected_answer": "It computes the distance (commonly Euclidean distance) from the new point to the existing points, takes the K closest neighbors, and assigns the label held by the majority of them. K is chosen by the user, typically 3 or 5 depending on dataset size. It extends to higher dimensions by including all features in the distance formula.",
+    "category": "conceptual"
+  },
+  {
+    "id": "c11",
+    "video_id": "i_LwzRVP7bg",
+    "question": "Why is naive Bayes called naive, and how did it perform in the video?",
+    "expected_answer": "It is naive because it assumes all the features are independent of each other given the class, so the joint probability becomes a simple product of the individual feature probabilities. It performed worse than KNN, with an overall accuracy of about 72%.",
+    "category": "multi-chunk"
+  },
+  {
+    "id": "c12",
+    "video_id": "i_LwzRVP7bg",
+    "question": "In the video's Bayes rule disease example, what is the probability of having the disease given a positive test?",
+    "expected_answer": "With a false positive rate of 0.05, a false negative rate of 0.01 and a disease probability of 0.1, the probability of having the disease given a positive test is 0.6875, or 68.75%.",
+    "category": "numeric"
+  },
+  {
+    "id": "c13",
+    "video_id": "i_LwzRVP7bg",
+    "question": "Why does logistic regression use the sigmoid function?",
+    "expected_answer": "A linear model mx+b ranges from negative infinity to infinity, but a probability must stay between 0 and 1. By taking the log of the odds and solving for the probability, the result is the sigmoid function 1/(1+e^-(mx+b)), which maps values into the range 0 to 1 and fits the S-shaped class data. Logistic regression got about 77% accuracy in the video.",
+    "category": "multi-chunk"
+  },
+  {
+    "id": "c14",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What are margins, support vectors and the kernel trick in SVMs?",
+    "expected_answer": "An SVM finds the hyperplane that best separates the classes while maximizing the margin, the distance between the boundary and the closest points. Those closest points that define the boundary are the support vectors. The kernel trick transforms the data, for example mapping x to x and x squared, so that data that is not separable becomes separable. SVMs are not very robust to outliers.",
+    "category": "conceptual"
+  },
+  {
+    "id": "c15",
+    "video_id": "i_LwzRVP7bg",
+    "question": "Which classification model performed best among KNN, naive Bayes, logistic regression and SVM, and what were their accuracies?",
+    "expected_answer": "The SVM performed best at about 87% accuracy. KNN got about 82%, logistic regression about 77%, and naive Bayes about 72%.",
+    "category": "multi-chunk"
+  },
+  {
+    "id": "c16",
+    "video_id": "i_LwzRVP7bg",
+    "question": "Why do neural networks need activation functions, and which ones does the video mention?",
+    "expected_answer": "Without an activation function, the whole network is just a linear combination of the inputs and collapses into a linear model. Activation functions add non-linearity. The video mentions sigmoid (output between 0 and 1), tanh (between -1 and 1), and ReLU (zero for negative inputs and linear for positive inputs).",
+    "category": "conceptual"
+  },
+  {
+    "id": "c17",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What hyperparameters gave the best neural network in the video, and what does dropout do?",
+    "expected_answer": "The best model had 64 nodes, a dropout probability of 0.2, a learning rate of 0.001 and a batch size of 64, reaching about 87% accuracy, similar to the SVM. Dropout randomly turns off nodes with a given probability during training iterations, which helps prevent overfitting.",
+    "category": "multi-chunk"
+  },
+  {
+    "id": "c18",
+    "video_id": "i_LwzRVP7bg",
+    "question": "How does the video explain gradient descent and the learning rate?",
+    "expected_answer": "Gradient descent follows the slope of the loss function downward to reduce the error. After computing the gradient of the loss with respect to each weight, each weight is updated by a small step in the direction that lowers the loss. The step size is controlled by the learning rate alpha, which affects how quickly the network converges, and if set too high it can diverge.",
+    "category": "conceptual"
+  },
+  {
+    "id": "c19",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What are MAE, MSE and RMSE, and why does the video prefer RMSE over MSE for interpretation?",
+    "expected_answer": "MAE is the mean absolute error, the average of the absolute residuals. MSE is the mean squared error, which squares the residuals and so punishes large errors more, and is differentiable. RMSE is the square root of MSE. MSE is in squared units of y, which is hard for humans to interpret, while RMSE is in the same units as y, such as dollars.",
+    "category": "multi-chunk"
+  },
+  {
+    "id": "c20",
+    "video_id": "i_LwzRVP7bg",
+    "question": "How is R squared calculated and what does a value close to one mean?",
+    "expected_answer": "R squared equals one minus RSS divided by TSS. RSS is the sum of squared residuals from the fitted line, and TSS is the total sum of squares relative to the mean of the y values. If the line fits much better than just predicting the average, RSS/TSS is small and R squared moves toward one, which is usually a sign of a good predictor.",
+    "category": "conceptual"
+  },
+  {
+    "id": "c21",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What are the four assumptions of linear regression mentioned in the video?",
+    "expected_answer": "Linearity (the data follows a linear pattern), independence (samples do not influence each other), normality (the residuals are normally distributed around the line of best fit), and homoscedasticity (the variance of the residuals stays constant).",
+    "category": "factual"
+  },
+  {
+    "id": "c22",
+    "video_id": "i_LwzRVP7bg",
+    "question": "How was the Seoul bike sharing dataset prepared, and how did R squared change with multiple linear regression?",
+    "expected_answer": "The video uses a bike sharing dataset from Seoul, South Korea with rental bike counts, filters it to a single hour (noon), and drops columns such as date, holiday, seasons, and the hour itself, later also wind, visibility and functional. A simple regression on temperature alone gave an R squared of about 0.38, and using multiple features improved it to about 0.52.",
+    "category": "multi-chunk"
+  },
+  {
+    "id": "c23",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What are the steps of the K-means clustering algorithm?",
+    "expected_answer": "Choose K random points as centroids, calculate the distance from each point to the centroids and assign each point to the closest one, then recompute each centroid as the average of the points in its cluster. Repeat the assignment and recompute steps until the clusters stop changing. The assignment step is the expectation step and the recompute step is the maximization step (expectation maximization).",
+    "category": "conceptual"
+  },
+  {
+    "id": "c24",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What is PCA and what does it optimize?",
+    "expected_answer": "Principal component analysis is a dimensionality reduction technique that finds the direction in the space with the largest variance and projects the data onto it. Equivalently, it minimizes the projection residuals. It differs from linear regression because there is no y label. Computing it requires linear algebra, specifically eigenvectors and eigenvalues, which the video says it will not cover.",
+    "category": "conceptual"
+  },
+  {
+    "id": "c25",
+    "video_id": "i_LwzRVP7bg",
+    "question": "What did the video show when applying K-means and PCA to the seeds dataset?",
+    "expected_answer": "The seeds dataset has wheat kernels of three varieties described by geometric features such as area, perimeter, compactness, length, width, asymmetry and groove length. K-means with three clusters on just two features (compactness and asymmetry) did not match the true classes, but using all features it found the three groups well. PCA reduced 210 samples with seven features to two dimensions, where the classes were fairly separable.",
+    "category": "multi-chunk"
+  }
+]
