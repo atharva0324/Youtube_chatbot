@@ -9,6 +9,10 @@ from langchain_core.runnables import RunnableParallel, RunnablePassthrough, Runn
 from langchain_core.documents import Document
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.retrievers import PineconeHybridSearchRetriever
+from nemoguardrails import LLMRails, RailsConfig
+from nemoguardrails.integrations.langchain.llm_adapter import LangChainLLMAdapter
+from nemoguardrails.rails.llm.options import RailStatus, RailType
+import random
 from pinecone import Pinecone
 from pinecone_text.sparse import BM25Encoder
 from pydantic import BaseModel, Field
@@ -19,7 +23,14 @@ import wikipediaapi
 load_dotenv()
  
  
+# llm = the model that WRITES text (used in every prompt | llm | parser chain)
 llm = ChatOpenAI(model='gpt-4o-mini', temperature=0.2)
+
+# rails = the guardrails engine that CHECKS text (used only via rails.check(...) below)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+rails_config = RailsConfig.from_path(os.path.join(BASE_DIR, "config"))
+rails = LLMRails(rails_config, llm=LangChainLLMAdapter(llm))
+
 parser = StrOutputParser()
  
 # --- Hybrid search setup (Pinecone) ---
@@ -160,10 +171,48 @@ def ingest_video(video_id):
     chat_histories_by_video[video_id] = []
  
     return {"status": "success", "video_id": video_id}
+
+
+# --- Guardrails: check the question before the chain, the answer after it ---
+REFUSALS = [
+    "Sorry, I can't help with that request.",
+    "That's outside what I can help with. Feel free to ask me something about the video.",
+    "I'm not able to assist with that one. Want to try a different question?",
+    "I can't answer that, but I'm happy to help with anything about this video.",
+    "That request isn't something I can help with. Let's get back to the video.",
+    "I have to pass on that one. Is there something else about the video you'd like to know?",
+]
+
+def get_refusal():
+    return random.choice(REFUSALS)
+
+def input_allowed(question):
+    result = rails.check(
+        [{"role": "user", "content": question}],
+        rail_types=[RailType.INPUT],
+    )
+    if result.status == RailStatus.BLOCKED:
+        print(f"Input blocked by rail: {result.rail}")
+        return False
+    return True
+
+def output_allowed(question, answer):
+    result = rails.check(
+        [{"role": "user", "content": question},
+         {"role": "assistant", "content": answer}],
+        rail_types=[RailType.OUTPUT],
+    )
+    if result.status == RailStatus.BLOCKED:
+        print(f"Output blocked by rail: {result.rail}")
+        return False
+    return True
  
 @traceable(name="youtube_rag_ask", run_type="chain")
 def ask(video_id, question,return_context=False):
- 
+    # GUARDRAIL 1: check the question before anything runs
+    if not input_allowed(question):
+        return {"answer": get_refusal(), "context": []} if return_context else get_refusal()
+    
     retriever = retrievers_by_video[video_id]
     chat_history = chat_histories_by_video[video_id]
     retrieved=[]
@@ -190,9 +239,13 @@ def ask(video_id, question,return_context=False):
     )
  
     answer = chain.invoke(question)
+
+    # GUARDRAIL 2: check the answer before the user sees it
+    if not output_allowed(question, answer):
+        return {"answer": get_refusal(), "context": retrieved} if return_context else get_refusal()
+
     chat_history.append(HumanMessage(content=question))
     chat_history.append(AIMessage(content=answer))
     if return_context:
         return {"answer": answer, "context": retrieved}
     return answer
- 

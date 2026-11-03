@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.concurrency import run_in_threadpool
+
 from pydantic import BaseModel
 import re
 
@@ -55,9 +57,9 @@ def ingest(req: IngestRequest):
 
 
 @app.post("/ask")
-def ask_question(req: AskRequest):
+async def ask_question(req: AskRequest):
     if req.video_id not in rag.retrievers_by_video:
         raise HTTPException(status_code=400, detail="Video not ingested yet — call /ingest first")
 
-    answer = rag.ask(req.video_id, req.question)
+    answer = await run_in_threadpool(rag.ask, req.video_id, req.question)
     return {"answer": answer}

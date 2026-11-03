@@ -1,0 +1,18 @@
+models:
+  - type: content_safety
+    engine: nim
+    model: nvidia/llama-3.1-nemotron-safety-guard-8b-v3
+
+rails:
+  input:
+    flows:
+      - jailbreak detection model
+      - content safety check input $model=content_safety
+  output:
+    flows:
+      - content safety check output $model=content_safety
+  config:
+    jailbreak_detection:
+      nim_base_url: "https://ai.api.nvidia.com"
+      nim_server_endpoint: "/v1/security/nvidia/nemoguard-jailbreak-detect"
+      api_key_env_var: NVIDIA_API_KEY
